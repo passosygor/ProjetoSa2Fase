@@ -132,3 +132,7 @@
     opacity: 0.8;
     background-color:rgba(6, 134, 2, 0.13);
   }
+
+  body{
+    background: radial-gradient(circle, rgb(3, 136, 3) 0%, white 100%);
+  }
