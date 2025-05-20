@@ -1,54 +1,130 @@
-/* Login.css */
-
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+.container{
+display: flex;
+flex-direction: row;
 }
 
-
-
-.login-box {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(5px);
-    text-align: center;
-    width: 350px;
+.div-direita{
+    height: 100vh;
+    width: 50vw;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.login h1 {
-    color: white;
-    margin-bottom: 20px;
+.div-esquerda{
+    height: 100vh;
+    width: 50vw;
+    background-image: url("/img/images.jpg");
 }
 
-.login input {
-    width: 90%;
-    padding: 12px;
-    margin: 10px 0;
+.caixa-login{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+height: 50vh;
+width: 25vw;
+background-color: white;
+}
+
+.input-senha{
+margin: 10px;
+
+  /* Cor de fundo */
+  background-color: white;
+  
+  /* Cor do texto */
+  color: #333;
+  
+  /* Borda */
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  
+  /* Espaçamento interno */
+  padding: 5px 10px;
+  
+  /* Largura */
+  width: 200px;
+  
+  /* Fonte */
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.input-nome{
+margin: 10px;
+
+  /* Cor de fundo */
+  background-color: white;
+  
+  /* Cor do texto */
+  color: #333;
+  
+  /* Borda */
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  
+  /* Espaçamento interno */
+  padding: 5px 10px;
+  
+  /* Largura */
+  width: 200px;
+  
+  /* Fonte */
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+button, .btn {
+    /* Cores */
+    background-color: #4CAF50; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    
+    /* Bordas */
     border: none;
-    border-radius: 20px;
-    outline: none;
-    background-color: #ffffff;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.login button {
-    width: 90%;
-    padding: 12px;
-    background-color: #2e7d32;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
+    border-radius: 5px; /* Cantos arredondados */
+    
+    /* Espaçamento */
+    padding: 12px 24px;
+    margin: 8px 0;
+    
+    /* Texto */
     font-size: 16px;
     font-weight: bold;
-    margin-top: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-}
+    text-align: center;
+    
+    /* Efeitos */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transição suave para hover/focus */
+  }
+  
+  /* Efeito ao passar o mouse */
+  button:hover, .btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px); /* Levanta o botão levemente */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra */
+  }
+  
+  /* Efeito quando clicado */
+  button:active, .btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  
+  /* Botão desabilitado */
+  button:disabled, .btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  .sem-senha{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 
-.login button:hover {
-    background-color: #1b5e20;
-}
+  }
+  .senha-esquecida{
+    padding: 15px;
+    font-size: 10px;
+  }

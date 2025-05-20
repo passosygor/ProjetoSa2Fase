@@ -1,39 +1,59 @@
-import React, { useState } from 'react'
-import '../pages/Login.css'
+import { useState } from 'react'
+import React from 'react'
+import './Login.css'
 
 function Login() {
-    const[email, setEmail] = useState("")
-    const[senha, setSenha] = useState("")
-    
-    function logar() {
-        // Exemplo de login fake
-        if (email === "1" && senha === "1") {
-            alert("Login realizado com sucesso!");
-        } else {
-            alert("Email ou senha incorretos!");
-        }
-    }
+const[Nome, setNome] = useState("")
+const[Senha, setSenha] = useState("")
+
+
 
   return (
-<div className='login'>
-    <div className='login-box'>
-        <h1>Login</h1>
-        <input 
-            type="text" 
-            placeholder="Digite seu email"
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)}
-        />
-        <input 
-            type="password" 
-            placeholder="Digite sua senha"
-            value={senha} 
-            onChange={(e) => setSenha(e.target.value)}
-        />
-        <button onClick={logar}>Logar</button>
-    </div>
-</div>
+    <>
+      <div className='container'>
 
+
+        <div className='div-esquerda'>
+        {/* <img src="/img/images.jpg" alt="" /> */}
+        </div>
+
+        <div className='div-direita'>
+
+            <div className='caixa-login'>
+
+                <h2>Faça seu Login</h2>
+
+                <input type="text" 
+                value={Nome}
+                onChange={(e) => setNome(e.target.value)}
+                className='input-nome'/>
+
+                <input type="password" 
+                value={Senha}
+                onChange={(e) => setSenha(e.target.value)}
+                className='input-senha'/>
+
+                <div className='senha-esquecida'>
+                 <a href="https://passwords.google.com/intro?hl=pt">Esqueceu sua senha e/ou Usuario?</a>
+                 </div>
+                 
+                <button >Login</button>
+
+
+                <div className='sem-senha'>
+                 <b>Não possui uma conta?</b>
+                 <label>Entre em contato pelo e-mail
+                 suporte@nutrifit.com.br</label>
+                 
+                 </div>
+
+            </div>
+
+        </div>
+
+        </div>
+
+    </>
   )
 }
 
