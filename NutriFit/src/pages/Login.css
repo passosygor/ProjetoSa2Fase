@@ -4,19 +4,19 @@ flex-direction: row;
 }
 
 .div-direita{
-    height: 100vh;
+  height: 100vh;
     width: 50vw;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background-image: url("/img/images.jpg");
 }
 
 .div-esquerda{
-    height: 100vh;
-    width: 50vw;
-    background-image: url("/img/images.jpg");
+  height: 100vh;
+  width: 50vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .caixa-login{
