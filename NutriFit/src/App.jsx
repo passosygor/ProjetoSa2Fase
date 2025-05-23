@@ -9,8 +9,8 @@ import Header from './components/Header'
 function App() {
   return (
     <div className='container-app'>
-      {/* <Header /> */}
-      <Cadastro />
+      <Header />
+      {/* <Cadastro /> */}
       {/* <Login /> */}
     </div>
   )

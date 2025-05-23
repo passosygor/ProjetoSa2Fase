@@ -13,7 +13,8 @@
 .titulo{
     width: 100%;
     text-align: center;
-    margin-left: 150px;
+    margin-left: 0px;
+    color: white;
 }
 .troca-pagina{
     display: flex;
