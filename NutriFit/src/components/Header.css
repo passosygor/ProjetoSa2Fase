@@ -1,0 +1,39 @@
+.container-header{
+    height: 70px;
+    background-color: var(--cor-2);
+    /* color: var(--cor-2); */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-right: 20px; */
+
+}
+
+.titulo{
+    width: 100%;
+    text-align: center;
+    margin-left: 150px;
+}
+.troca-pagina{
+    display: flex;
+    gap: 20px;
+    margin: 40px;
+    color: white;
+}
+.home-voltar{
+    font-size: 20px;
+}
+.contato{
+    font-size: 20px;
+}
+.home-voltar:hover{
+    scale: 1.1;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+.contato:hover{
+    scale: 1.1;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
