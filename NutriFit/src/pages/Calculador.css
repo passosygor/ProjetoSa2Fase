@@ -1,76 +1,261 @@
-.container-app{
-    position: absolute; /* Ou pode ser 'fixed' */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  
-  .form-produto{
+.container-app {
+  position: absolute;
+  /* Ou pode ser 'fixed' */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.form-produto {
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  
+
   border: 1px solid aliceblue;
   padding: 5vh;
   border-radius: 10px;
+
+}
+
+.container-produto{
+  font-size: 1rem;
+  font-family: 20rem;
+}
+
+
+/* PARAAAAAAAAAA
   
+  */
+
+/* PARAAAAAA */
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.botao {
+  padding: 10px;
+}
+
+#root {
+   max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+   filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+
+.logo.react:hover {
+   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .cards{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
+  to {
+    transform: rotate(360deg);
   }
-  
-  .botao{
-    padding: 10px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
   }
-  
-  #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+}
+
+.card {
+  padding: 20px;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #c8f0d4; /* mesmo fundo claro das outras páginas */
+  color: #333333;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* desativa scroll vertical e horizontal */
+}
+
+.container-app-calculador{
+  max-width: 600px;
+  margin: 40px auto; /* espaço no topo e centralização */
+  background-color: #ffffff; /* bloco branco para destacar o formulário */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+}
+
+.container-app-calculador h1 {
+  text-align: center;
+  font-size: 2.5rem;    /* Aumentado um pouco pra combinar com labels maiores */
+  margin-bottom: 20px;
+  color: #388E3C; /* Verde escuro */
+}
+.form-produto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid aliceblue;
+  border-radius: 10px;
+  padding: 5vh;
+  width: 100%;
+}
+
+.form-produto label {
+  width: 100%;
+  text-align: center;               /* centraliza as labels acima dos inputs */
+  font-family: 'Impact', sans-serif; /* fonte impactante */
+  font-size: 2.4rem;                /* ajuste o tamanho aqui (ex.: 2rem, 2.4rem etc) */
+  font-weight: bold;
+  margin-bottom: 12px;               /* espaço entre a label e o input */
+  color: #333333;
+}
+
+/* Inputs do formulário */
+.form-produto input[type="text"],
+.form-produto input[type="number"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 2px solid #cccccc;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-produto input[type="text"]:focus,
+.form-produto input[type="number"]:focus {
+  outline: none;
+  border-color: #4CAF50; /* Verde principal ao focar */
+  background-color: #ffffff;
+}
+
+.form-produto .botao {
+  margin-top: 10px;
+}
+
+.form-produto button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.form-produto button:hover {
+  background-color: #388E3C; /* Verde escuro no hover */
+}
+
+.form-produto button:active {
+  transform: scale(0.97);
+}
+
+/* 3) Lista de Cards de Alimento */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+/* Cada card de alimento (Contador) */
+.container-produto {
+  background-color: #ffffff;
+  border: 1px solid #4CAF50;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 16px 14px;
+  width: 160px;
+  text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.container-produto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Título do card (nome do alimento) */
+.container-produto h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #388E3C;
+  text-transform: capitalize;
+}
+
+/* Texto dentro do card (gramas, calorias, id) */
+.container-produto p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #333333;
+}
+
+/* 4) Responsividade */
+@media (max-width: 480px) {
+  .container-app {
+    margin: 20px 10px;
+    padding: 20px 10px;
   }
-  
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+
+  .cards {
+    gap: 12px;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+
+  .container-produto {
+    width: 45%;
+    padding: 12px 10px;
   }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
+
+  .container-app h1 {
+    font-size: 1.8rem;
   }
-  
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+
+  .form-produto input[type="text"],
+  .form-produto input[type="number"] {
+    font-size: 0.95rem;
+    padding: 8px 10px;
   }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-      animation: logo-spin infinite 20s linear;
-    }
+
+  .form-produto button {
+    font-size: 1rem;
+    padding: 10px 24px;
   }
-  
-  .card {
-    padding: 20px;
+
+  .form-produto label {
+    font-size: 2rem; /* Reduz um pouco em telas menores */
   }
-  
-  .read-the-docs {
-    color: #888;
-  }
-  
-  
+}

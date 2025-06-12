@@ -10,8 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1",
+    "navigate": "^0.3.6",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.6.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
@@ -22,6 +29,12 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "nodemon": "^3.1.10",
     "vite": "^6.3.1"
-  }
+  },
+  "description": "Repositório destinado ao projeto do sistema de aprendizagem do SENAI, projeto desenvolvido para que a pessoa coloque as comidas ingeridas ao longo do dia e será informada sobre os valorores nutricionais do alimento, projeto com a intenção de ajudar e incentivar hábitos saudaveis e positivos",
+  "main": "eslint.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

@@ -1,7 +1,69 @@
 .container{
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f2f9f2, #d1e7d1);
+
 }
+
+
+.modal-conteudo {
+  background-color: #d4edda; /* Verde clarinho */
+  color: #155724;            /* Verde escuro */
+  border: 1px solid #c3e6cb;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.modal-conteudo button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-sucesso {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 140, 23, 0.316); /* Verde transparente */  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-erro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.2); /* tom avermelhado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-erro .modal-conteudo {
+  background-color: #fff;
+  border: 2px solid #ff4d4d;
+  padding: 20px 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: #b30000;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+}
+
 
 .div-direita{
    height: 100vh;
@@ -10,94 +72,60 @@ flex-direction: row;
 }
 
 .div-esquerda{
-  height: 100vh;
-  width: 50vw;
-  background-color: white;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  background-color: white;
+
 }
 
 .caixa-login{
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-height: 50vh;
-width: 25vw;
-background-color: white;
+  width: 350px;
+  padding: 40px 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .input-senha{
-margin: 10px;
-
-  /* Cor de fundo */
-  background-color: white;
-  
-  /* Cor do texto */
-  color: #333;
-  
-  /* Borda */
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  
-  /* Espaçamento interno */
-  padding: 5px 10px;
-  
-  /* Largura */
-  width: 200px;
-  
-  /* Fonte */
-  font-family: Arial, sans-serif;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
   font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
 .input-nome{
-margin: 10px;
-
-  /* Cor de fundo */
-  background-color: white;
-  
-  /* Cor do texto */
-  color: #333;
-  
-  /* Borda */
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  
-  /* Espaçamento interno */
-  padding: 5px 10px;
-  
-  /* Largura */
-  width: 200px;
-  
-  /* Fonte */
-  font-family: Arial, sans-serif;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
   font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
-button, .btn {
-    /* Cores */
-    background-color: #4CAF50; /* Cor de fundo */
-    color: white; /* Cor do texto */
-    
-    /* Bordas */
-    border: none;
-    border-radius: 5px; /* Cantos arredondados */
-    
-    /* Espaçamento */
-    padding: 12px 24px;
-    margin: 8px 0;
-    
-    /* Texto */
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    
-    /* Efeitos */
-    cursor: pointer;
-    transition: all 0.3s ease; /* Transição suave para hover/focus */
+.login, .btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
   }
   
   /* Efeito ao passar o mouse */
@@ -118,13 +146,23 @@ button, .btn {
     background-color: #cccccc;
     cursor: not-allowed;
   }
-  .sem-senha{
+  .sem-senha2{
     text-align: center;
     display: flex;
     flex-direction: column;
 
   }
   .senha-esquecida{
-    padding: 15px;
-    font-size: 10px;
+    margin-top: 12px;
+    font-size: 13px;
   }
+
+  .senha-esquecida a {
+   color: #4CAF50;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.senha-esquecida a:hover {
+  text-decoration: underline;
+}

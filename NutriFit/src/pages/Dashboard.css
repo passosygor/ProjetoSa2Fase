@@ -1,0 +1,150 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-bg {
+  position: relative;
+  background-image: url('../../img/Imagem\ Fundo\ Nutrifit.png'); /* ajuste o caminho conforme necessário */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Camada de blur */
+.dashboard-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(2px);
+  z-index: 0;
+}
+
+
+.dashboard-card {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.85); /* fundo branco com transparência */
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+.dashboard-card h1 {
+  margin-bottom: 10px;
+  font-size: 28px;
+  color: #333;
+}
+
+.dashboard-card p {
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.dashboard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+    width: 100%;
+  padding: 12px;
+  margin-top: 16px;
+  background-color: #ffffff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dashboard-actions button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.dashboard-actions button:hover {
+  opacity: 0.9;
+}
+
+.dashboard-actions .excluir {
+  background-color: #e57373;
+  color: white;
+}
+
+.dashboard-actions button:not(.excluir) {
+  background-color: #4caf50;
+  color: white;
+}
+/* Abaixo para sobrepor todos os Modais (Erro no Excluir conta no DashBoard, 
+caso resolva apenas apagar o codigo abaixo */
+
+/* Estilo base para todos os modais */
+.modal-sucesso, .modal-erro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* fundo escuro com transparência */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* mais alto que qualquer coisa na tela */
+}
+
+/* Conteúdo do modal */
+.modal-conteudo {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 90%;
+  width: 300px;
+}
+
+.modal-conteudo h3 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+.modal-conteudo button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.modal-conteudo button:hover {
+  background-color: #45a049;
+}
+
+.modal-conteudo .excluir {
+  background-color: #e57373;
+}
+
+.modal-conteudo .excluir:hover {
+  background-color: #d9534f;
+}
+

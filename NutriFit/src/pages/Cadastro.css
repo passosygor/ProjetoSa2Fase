@@ -1,122 +1,103 @@
-.container-geral{
+.container-geral {
   display: flex;
   flex-direction: row;
-  }
-  
-  .div-esquerdaa{
-    height: 100vh;
-    width: 50vw;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .div-direitaa{
-    height: 100vh;
-    width: 50vw;
-    background-image: url("/img/images.jpg");
-  }
+  height: 100vh;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f2f9f2, #d1e7d1);
+}
 
-  .caixote-cadastro{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 50vh;
-    width: 25vw;
-    background-color: white;
-    }
+.div-esquerdaa {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
 
-    .cadastro-senha{
-      margin: 5px;
-      
-        /* Cor de fundo */  
-        background-color: white;
-        
-        /* Cor do texto */
-        color: #333;
-        
-        /* Borda */
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        
-        /* Espaçamento interno */
-        padding: 5px 10px;
-        
-        /* Largura */
-        width: 200px;
-        
-        /* Fonte */
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-      }
-      
-      .cadastro-usuario{
-      margin: 10px;
-      margin-top: 15px;
-      
-        /* Cor de fundo */
-        background-color: white;
-        
-        /* Cor do texto */
-        color: #333;
-        
-        /* Borda */
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        
-        /* Espaçamento interno */
-        padding: 5px 10px;
-        
-        /* Largura */
-        width: 200px;
-        
-        /* Fonte */
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-      }
-      
-      .botao-cadastro {
-          /* Cores */
-          background-color: #4CAF50; /* Cor de fundo */
-          color: white; /* Cor do texto */
-          
-          /* Bordas */
-          border: none;
-          border-radius: 5px; /* Cantos arredondados */
-          
-          /* Espaçamento */
-          padding: 12px 24px;
-          margin: 8px 0;
-          
-          /* Texto */
-          font-size: 16px;
-          font-weight: bold;
-          text-align: center;
-          
-          /* Efeitos */
-          cursor: pointer;
-          transition: all 0.3s ease; /* Transição suave para hover/focus */
-        }
-        
-        /* Efeito ao passar o mouse */
-        button:hover, .btn:hover {
-          background-color: #45a049;
-          transform: translateY(-2px); /* Levanta o botão levemente */
-          box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra */
-        }
-        
-        /* Efeito quando clicado */
-        button:active, .btn:active {
-          transform: translateY(0);
-          box-shadow: none;
-        }
-        
-        /* Botão desabilitado */
-        button:disabled, .btn:disabled {
-          background-color: #cccccc;
-          cursor: not-allowed;
-        }
-  
+.div-direitaa {
+  height: 100vh;
+  width: 50vw;
+  background-image: url("/img/images.jpg");
+}
+
+/* Caixa central de cadastro */
+.caixote-cadastro {
+  width: 350px;
+  padding: 40px 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.caixote-cadastro h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Inputs */
+.cadastro-email,
+.cadastro-usuario,
+.cadastro-senha {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.cadastro-email:focus,
+.cadastro-usuario:focus,
+.cadastro-senha:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
+}
+
+/* Botão cadastrar */
+.botao-cadastro {
+  width: 100%;
+  padding: 12px;
+  margin-top: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.botao-cadastro:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.botao-cadastro:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Link para login */
+.senha-esquecida2 {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.senha-esquecida2 a {
+  color: #4CAF50;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.senha-esquecida2 a:hover {
+  text-decoration: underline;
+}
