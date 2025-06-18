@@ -180,6 +180,16 @@ app.delete('/alimentos/:id', async (req, res) => {
     }
 });
 
+app.get('/alimentos', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM alimentos');
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erro ao buscar alimentos' });
+  }
+});
+
 
 
 
@@ -231,5 +241,97 @@ app.post('/planos', async (req, res) => {
   } catch (err) {
     console.error('Erro ao inserir plano:', err);
     res.status(500).json({ erro: 'Erro ao salvar plano' });
+  }
+});
+
+
+
+
+// TESTE
+
+app.get('/planos/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const [resultado] = await pool.query(
+      'SELECT * FROM planos WHERE id_usuario = ? ORDER BY id_plano DESC LIMIT 1',
+      [id]
+    );
+
+    if (resultado.length === 0) {
+      return res.status(404).json({ erro: 'Plano não encontrado' });
+    }
+
+    const plano = resultado[0];
+
+    // Aqui você pode criar regras simples baseadas no objetivo:
+    let planoAlimentar;
+
+    if (plano.objetivo === 'Ganho de massa magra') {
+      planoAlimentar = {
+        objetivo: plano.objetivo,
+        cardapio: [
+          {
+            refeicao: 'Café da manhã',
+            descricao: '60 g de aveia, 1 scoop whey, banana, leite...',
+            calorias: 660,
+            proteinas: 41,
+            carboidratos: 83,
+            gorduras: 18
+          },
+          {
+            refeicao: 'Almoço',
+            descricao: 'Peito de frango, arroz, batata doce...',
+            calorias: 1320,
+            proteinas: 83,
+            carboidratos: 165,
+            gorduras: 36
+          },
+          // Adicione mais refeições aqui
+        ]
+      };
+    } else if (plano.objetivo === 'Perder Peso') {
+      planoAlimentar = {
+        objetivo: plano.objetivo,
+        cardapio: [
+          {
+            refeicao: 'Café da manhã',
+            descricao: 'Iogurte natural, morango, chia...',
+            calorias: 300,
+            proteinas: 20,
+            carboidratos: 25,
+            gorduras: 8
+          },
+          {
+            refeicao: 'Jantar',
+            descricao: 'Peixe grelhado, legumes, salada...',
+            calorias: 500,
+            proteinas: 35,
+            carboidratos: 30,
+            gorduras: 12
+          },
+        ]
+      };
+    } else {
+      planoAlimentar = {
+        objetivo: plano.objetivo,
+        cardapio: [
+          {
+            refeicao: 'Almoço padrão',
+            descricao: 'Arroz, feijão, carne magra, legumes',
+            calorias: 600,
+            proteinas: 40,
+            carboidratos: 60,
+            gorduras: 15
+          }
+        ]
+      };
+    }
+
+    res.status(200).json(planoAlimentar);
+
+  } catch (err) {
+    console.error('Erro ao buscar plano alimentar:', err);
+    res.status(500).json({ erro: 'Erro interno do servidor' });
   }
 });
