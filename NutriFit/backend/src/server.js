@@ -198,7 +198,7 @@ app.get('/alimentos', async (req, res) => {
 
 app.post('/planos', async (req, res) => {
   const {
-    id_usuario,
+    usuario_id,
     idade,
     sexo,
     altura,
@@ -215,14 +215,14 @@ app.post('/planos', async (req, res) => {
 
   const sql = `
     INSERT INTO planos (
-      id_usuario, idade, sexo, altura, peso,
+      usuario_id, idade, sexo, altura, peso,
       objetivo, atividade, condicoes, alergias,
       imc, calorias
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   const values = [
-    id_usuario,
+    usuario_id,
     idade,
     sexo,
     altura,
@@ -254,7 +254,7 @@ app.get('/planos/:id', async (req, res) => {
 
   try {
     const [resultado] = await pool.query(
-      'SELECT * FROM planos WHERE id_usuario = ? ORDER BY id_plano DESC LIMIT 1',
+      'SELECT * FROM planos WHERE usuario_id = ? ORDER BY id_plano DESC LIMIT 1',
       [id]
     );
 

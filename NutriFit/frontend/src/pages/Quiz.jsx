@@ -1,4 +1,4 @@
-// Quiz.jsx
+
 import React, { useState } from 'react';
 import './Quiz.css';
 import axios from 'axios';
@@ -39,7 +39,7 @@ function Quiz() {
     const user = JSON.parse(localStorage.getItem('usuarioLogado'));
 
     const plano = {
-      id_usuario: user.id_usuario,
+      usuario_id: user.id_usuario,
       ...formData,
       imc,
       calorias
