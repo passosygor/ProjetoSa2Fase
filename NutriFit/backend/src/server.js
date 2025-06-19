@@ -8,7 +8,7 @@ const app = express();
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'mysql2254',
+    password: 'senai',
     database: 'bdd_sa',
     waitForConnections: true,
     connectionLimit: 10,
@@ -198,7 +198,7 @@ app.get('/alimentos', async (req, res) => {
 
 app.post('/planos', async (req, res) => {
   const {
-    usuario_id,
+    id_usuario,
     idade,
     sexo,
     altura,
@@ -215,14 +215,14 @@ app.post('/planos', async (req, res) => {
 
   const sql = `
     INSERT INTO planos (
-      usuario_id, idade, sexo, altura, peso,
+      id_usuario, idade, sexo, altura, peso,
       objetivo, atividade, condicoes, alergias,
       imc, calorias
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   const values = [
-    usuario_id,
+    id_usuario,
     idade,
     sexo,
     altura,
@@ -254,7 +254,7 @@ app.get('/planos/:id', async (req, res) => {
 
   try {
     const [resultado] = await pool.query(
-      'SELECT * FROM planos WHERE usuario_id = ? ORDER BY id_plano DESC LIMIT 1',
+      'SELECT * FROM planos WHERE id_usuario = ? ORDER BY id_plano DESC LIMIT 1',
       [id]
     );
 

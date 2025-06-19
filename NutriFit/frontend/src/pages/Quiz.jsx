@@ -39,7 +39,7 @@ function Quiz() {
     const user = JSON.parse(localStorage.getItem('usuarioLogado'));
 
     const plano = {
-      usuario_id: user.id_usuario,
+      id_usuario: user.id_usuario,
       ...formData,
       imc,
       calorias
