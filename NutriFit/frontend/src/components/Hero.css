@@ -1,0 +1,26 @@
+.hero {
+  position: relative;
+  height: 100vh; /* Altura total da janela, como na Cascade */
+  width: 100%; /* Garante que ocupe toda a largura */
+  background-size: cover; /* Imagem cobre toda a área sem distorção */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita repetição */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .hero {
+    height: 80vh; /* Reduz a altura em tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 60vh; /* Ajuste para smartphones */
+  }
+}
+
+.hero {
+  /* ... estilos anteriores ... */
+  transition: opacity 0.5s ease;
+}

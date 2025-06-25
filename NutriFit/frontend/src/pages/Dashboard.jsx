@@ -87,7 +87,9 @@ function Dashboard() {
   }
 
   return (
-    <div className="dashboard-bg">
+    <>
+    <Header />
+      <div className="dashboard-bg">
       <div className="dashboard-card">
         {editando ? (
           <>
@@ -168,7 +170,7 @@ function Dashboard() {
         </div>
       )}
     </div>
-  );
+  </>);
 }
 
 export default Dashboard;

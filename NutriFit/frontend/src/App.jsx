@@ -10,6 +10,7 @@ import Quiz from './pages/Quiz'
 import Plano from './pages/Plano'
 import Dashboard from './pages/Dashboard'
 import CalcularIMC from './pages/CalcularIMC'
+import Hero from './components/Hero'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {  
@@ -19,6 +20,7 @@ function App() {
       {/* <Calculador/> */}
       <Routes>
         <Route path="/" element={<Cadastro />} />
+        {/* <Route path="/" element={<Home/>} />  */}
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home/>}/>
         <Route path="/calculador" element={<Calculador />} />

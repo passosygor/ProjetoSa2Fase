@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Contador from '../components/Contador';
 import axios from 'axios';
 import './Calculador.css';
+import Header from '../components/Header';
 
 function Calculador() {
   const [inputNome, setInputNome] = useState('');
@@ -11,6 +12,7 @@ function Calculador() {
   const [inputCarboidratos, setInputCarboidratos] = useState('');
   const [inputGorduras, setInputGorduras] = useState('');
   const [produtos, setProdutos] = useState([]);
+  
 
   const API = 'http://localhost:3000';
 
@@ -76,6 +78,7 @@ function Calculador() {
   }
 
   return (
+    <Header />,
     <div className="container-app-calculador">
       <h1>Cadastro de Alimentos</h1>
 

@@ -8,7 +8,7 @@ const app = express();
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'senai',
+    password: 'Nicolas13b',
     database: 'bdd_sa',
     waitForConnections: true,
     connectionLimit: 10,

@@ -1,0 +1,16 @@
+.section-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #8b6f47;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border: none; /* Remova borda padrão do button */
+  cursor: pointer; /* Indicador de clique */
+}
+
+.section-button:hover {
+  background-color: #6b4e31;
+}
