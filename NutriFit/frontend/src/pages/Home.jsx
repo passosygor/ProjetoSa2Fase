@@ -19,7 +19,7 @@ function Home() {
 {/* Seção Plano de Dieta */}
     <Section
       title="Plano de Dieta Personalizado"
-      description="Crie um plano de dieta sob medida para suas necessidades."
+      description="Faça o quiz e montamos um plano de dieta para suas necessidades."
       buttonText="Saiba Mais"
       imageSrc={"/img/sectiondieta.jpg"}
       onNavigate={navigateDieta}
