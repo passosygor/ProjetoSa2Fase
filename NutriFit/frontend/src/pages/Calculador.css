@@ -100,7 +100,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* desativa scroll vertical e horizontal */
+  /* overflow: hidden; desativa scroll vertical e horizontal */
 }
 
 .container-app-calculador{

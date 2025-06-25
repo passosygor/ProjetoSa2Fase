@@ -1,16 +1,26 @@
-.section-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #8b6f47;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  border: none; /* Remova borda padrão do button */
-  cursor: pointer; /* Indicador de clique */
+.section-container {
+  width: 100%; /* Largura total */
+  display: flex; /* Layout flexível */
+  align-items: center; /* Alinha verticalmente no centro */
+  padding: 20px; /* Espaçamento interno */
+  box-sizing: border-box; /* Inclui padding na largura */
+  background-color: #f9f9f9; /* Fundo opcional para contraste */
+  margin-bottom: 20px; /* Espaçamento entre seções */
 }
 
-.section-button:hover {
-  background-color: #6b4e31;
+.section-image {
+  flex: 1; /* Ocupa uma parte proporcional (ajustável) */
+  max-width: 40%; /* Limita a largura da imagem para não dominar */
+  margin-right: 20px; /* Espaçamento à direita da imagem */
+}
+
+.section-image img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto; /* Preserva a proporção */
+  object-fit: cover; /* Ajusta a imagem sem distorcer */
+  border-radius: 8px; /* Opcional: arredonda as bordas */
+}
+.section-content {
+  flex: 2; /* Ocupa mais espaço que a imagem (ajustável) */
+  padding: 10px; /* Espaçamento interno */
 }

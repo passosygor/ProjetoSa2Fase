@@ -5,11 +5,12 @@
 .home-container {
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  /* height: 100vh; */
+  min-height: 100vh;
+  overflow-y: auto; /* Permite rolagem vertical */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 
@@ -27,31 +28,6 @@
 .logo-section {
   text-align: center;
   margin-bottom: 40px;
-}
-
-.logo {
-
-  width: 200px;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  margin-bottom: 20px;
-  object-fit:cover;
-}
-
-/* .logo {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-} */
-
-
-.frase {
-  color: #fff;
-  font-size: 1.8rem;
-  font-weight: bold;
-  text-shadow: 1px 1px 4px #000;
 }
 
 .menu {

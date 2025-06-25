@@ -2,9 +2,12 @@ import React from 'react';
 import './Hero.css' ;
 
 
-const Hero = ({ fundocomlogo }) => {
+const Hero = () => {
   return (
-  <img src="./img/fundocomlogo.png" alt="flogo" />
+    <section
+      className="hero"
+      style={{ backgroundImage: `url('/img/fundocomlogo.png')` }} // Caminho absoluto
+    ></section>
   );
 };
 

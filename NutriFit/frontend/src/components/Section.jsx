@@ -10,15 +10,15 @@ const Section = ({ title, description, buttonText, imageSrc, onNavigate }) => {
 
   return (
     <div className="section-container">
-      <div className="section-text">
+      <div className="section-image">
+        <img src={imageSrc} alt={title} />
+      <div className="section-content">
         <h2>{title}</h2>
         <p>{description}</p>
         <button onClick={handleClick} className="section-button">
           {buttonText}
         </button>
-      </div>
-      <div className="section-image">
-        <img src={imageSrc} alt={title} />
+       </div>
       </div>
     </div>
   );
