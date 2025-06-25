@@ -51,3 +51,9 @@
     width: 100%;
   }
 }
+.menu-usuario{
+  display: flex;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px;
+}
