@@ -122,17 +122,17 @@ app.post('/login', async (req, res) => {
 // BANCO DE DADOS PARA ARMAZENAMENTO DE ALIMENTO
 
 // GET todos os alimentos
-app.get('/alimentos', async (req, res) => {
-  try {
-    const [rows] = await pool.query(
-      'SELECT id_alimento, nome, gramas, calorias FROM alimentos ORDER BY id_alimento DESC'
-    );
-    res.json(rows);
-  } catch (err) {
-    console.error('Erro ao buscar alimentos:', err);
-    res.status(500).json({ error: 'Erro ao buscar alimentos' });
-  }
-});
+// app.get('/alimentos', async (req, res) => {
+//   try {
+//     const [rows] = await pool.query(
+//       'SELECT id_alimento, nome, gramas, calorias, proteinas, carboidratos, gorduras FROM alimentos ORDER BY id_alimento DESC'
+//     );
+//     res.json(rows);
+//   } catch (err) {
+//     console.error('Erro ao buscar alimentos:', err);
+//     res.status(500).json({ error: 'Erro ao buscar alimentos' });
+//   }
+// });
 
 // POST para cadastrar novo alimento
 app.post('/alimentos', async (req, res) => {

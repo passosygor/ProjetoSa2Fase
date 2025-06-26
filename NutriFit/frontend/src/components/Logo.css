@@ -1,8 +1,6 @@
-.img-logo{
-    height: 100px;
-    margin-left: 30px;
-    width: 75px; /* Ajuste conforme necessário */
-    border-radius: 20px;
-    padding: 0px;
-    
+.img-logo {
+  display: block;
+  margin: 0 auto 20px; 
+  max-width: 100px; 
+  height: auto;        
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './Login.css'
+import Logo from '../components/Logo.jsx';
 
 function Login() {
   const [Nome, setNome] = useState("")
@@ -41,7 +42,7 @@ function Login() {
               <h3>✅ Login realizado com sucesso!</h3>
               <button onClick={() => {
                 setShowModal(false)
-                navigate('/home')
+                navigate('/')
               }}>
                 Prosseguir
               </button>
@@ -61,7 +62,7 @@ function Login() {
 
         <div className='div-esquerda'>
           <div className='caixa-login'>
-
+           <a href="/"><Logo /></a>
             <h2>Faça seu Login</h2>
 
             <form onSubmit={handleLogin}>
@@ -85,7 +86,7 @@ function Login() {
 
               <button type='submit' className='login'>Login</button>
               <div className='senha-esquecida'>
-                <a href="http://localhost:5173/">
+                <a href="http://localhost:5173/cadastro">
                   Ainda não tem cadastro? Registre-se! 
                   {/* Caso hospedar o site mudar o link! */}
                 </a>

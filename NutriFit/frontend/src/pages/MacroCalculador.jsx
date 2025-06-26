@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './MacroCalculadora.css';
+import Logo from '../components/Logo.jsx';
 
 function MacroCalculador() {
   const [macros, setMacros] = useState([]);
@@ -16,6 +17,19 @@ function MacroCalculador() {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
   const [alimentoToDelete, setAlimentoToDelete] = useState('');
+
+  // 🧮 Cálculo dos totais
+  const totais = macros.reduce(
+    (acc, item) => {
+      acc.gramas += Number(item.gramas) || 0;
+      acc.calorias += Number(item.caloria) || 0;
+      acc.proteinas += Number(item.proteina) || 0;
+      acc.carboidratos += Number(item.carbo) || 0;
+      acc.gorduras += Number(item.gordura) || 0;
+      return acc;
+    },
+    { gramas: 0, calorias: 0, proteinas: 0, carboidratos: 0, gorduras: 0 }
+  );
 
   useEffect(() => {
     async function fetchAlimentos() {
@@ -85,6 +99,7 @@ function MacroCalculador() {
 
   return (
     <div className="macro-container">
+           <a href="/"><Logo /></a>
       <h1>Calculadora de Macronutrientes</h1>
       <h2>Use a ferramenta para manter controle sobre seus macronutrientes e alcançar seu objetivo!</h2>
 
@@ -109,11 +124,11 @@ function MacroCalculador() {
         <thead>
           <tr>
             <th>Alimento</th>
-            <th>Gramas</th>
-            <th>Calorias</th>
-            <th>Proteinas</th>
-            <th>Carboidratos</th>
-            <th>Gordura</th>
+            <th>Gramas {Number(totais.gramas).toFixed(1)} g</th>
+            <th>Calorias {Number(totais.calorias).toFixed(1)} kcal</th>
+            <th>Proteínas {Number(totais.proteinas).toFixed(1)} g</th>
+            <th>Carboidratos {Number(totais.carboidratos).toFixed(1)} g</th>
+            <th>Gorduras {Number(totais.gorduras).toFixed(1)} g</th>
             <th>Exclusão</th>
           </tr>
         </thead>
@@ -147,7 +162,7 @@ function MacroCalculador() {
         <div className="modal" onClick={() => setModalVisible(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close" onClick={() => setModalVisible(false)}>&times;</span>
-            <p>Alimento cadastrado com sucesso</p>
+            <p>✅ Alimento cadastrado com sucesso</p>
           </div>
         </div>
       )}

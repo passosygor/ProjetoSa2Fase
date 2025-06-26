@@ -1,6 +1,6 @@
 .macro-container {
     background-image: url('/IMAGENS/11.png');
-    background-color: #f4f4f4;
+    background-color: white;
     min-height: 100vh;
     font-family: Arial, sans-serif;
     padding: 0;
@@ -143,4 +143,5 @@
     background-color: #f0af54;
     margin-top: 10px;
   }
+  
   

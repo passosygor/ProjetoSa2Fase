@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
+import Header from '../components/Header.jsx';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -117,7 +118,7 @@ function Dashboard() {
             <div className="dashboard-actions">
               <button onClick={() => setEditando(true)}>Editar Conta</button>
               <button onClick={() => setShowConfirmModal(true)} className="excluir">Excluir Conta</button>
-              <button onClick={() => navigate('/home')}>Voltar à Home</button>
+              <button onClick={() => navigate('/')}>Voltar à Home</button>
               <button onClick={handleSair}>Sair</button>
             </div>
           </>

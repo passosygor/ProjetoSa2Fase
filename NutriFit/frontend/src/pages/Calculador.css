@@ -259,3 +259,55 @@ html, body {
     font-size: 2rem; /* Reduz um pouco em telas menores */
   }
 }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 128, 0, 0.4); /* sombra verde */
+  max-width: 300px;
+  width: 90%;
+}
+
+.modal-content p {
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+  margin: 15px 0;
+}
+
+.modal-content .check-icon {
+  font-size: 24px;
+  color: green;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.modal-content button {
+  margin-top: 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #45a049;
+}

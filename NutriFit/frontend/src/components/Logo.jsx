@@ -3,7 +3,7 @@ import './Logo.css'
 
 function Logo() {
   return (
-    <img src="/img/logo.png" alt="logo NutriFit" className='img-logo'/>
+    <img src="/img/logoHeader.png" alt="logo NutriFit" className='img-logo'/>
   )
 }
 

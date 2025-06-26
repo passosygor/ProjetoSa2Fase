@@ -15,7 +15,7 @@ function Header() {
 
   return (
     <div className='container-header'>
-      <Logo />
+      <a href="/"><Logo /></a>
       <div className="menu">
         <button className="menu-button" onClick={() => navigate('/quiz')}>
           Plano de Dieta
@@ -29,7 +29,7 @@ function Header() {
             <button className="menu-button" onClick={() => navigate('/login')}>
               Login
             </button>
-            <button className="menu-button" onClick={() => navigate('/')}>
+            <button className="menu-button" onClick={() => navigate('/cadastro')}>
               Cadastro
             </button>
           </>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './Quiz.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../components/Logo.jsx';
 
 function Quiz() {
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ function Quiz() {
       <div className="quiz-container">
         {etapa === 1 && (
           <div className="quiz-card">
+           <a href="/"><Logo /></a>
             <h2>Informe seus dados</h2>
             <input type="number" placeholder="Idade" value={formData.idade} onChange={(e) => handleChange('idade', e.target.value)} />
             <select value={formData.sexo} onChange={(e) => handleChange('sexo', e.target.value)}>

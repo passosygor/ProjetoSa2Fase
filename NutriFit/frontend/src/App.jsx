@@ -22,10 +22,10 @@ function App() {
       {/* <Calculador/> */}
     
       <Routes>
-        <Route path="/" element={<Cadastro />} />
+        <Route path="/cadastro" element={<Cadastro />} />
         {/* <Route path="/" element={<Home/>} />  */}
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home/>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/calculador" element={<Calculador />} />
         <Route path="/calcularimc" element={<CalcularIMC />} />
         <Route path="/dashboard" element={<Dashboard />} /> 

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './Cadastro.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom' // <-- IMPORTANTE
+import Logo from '../components/Logo.jsx';
 // import User from '../components/User'
 
 
@@ -67,7 +68,7 @@ function Cadastro() {
       <div className='div-esquerdaa'>
 
         <div className='caixote-cadastro'>
-
+       <a href="/"><Logo /></a>
           <h2>Cadastro de Usuários</h2>
 
           <form onSubmit={handleSubmit}>
