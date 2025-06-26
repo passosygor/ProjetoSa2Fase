@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './MacroCalculadora.css';
 
 function MacroCalculador() {
   const [macros, setMacros] = useState([]);
   const [formData, setFormData] = useState({
     alimento: '',
+    gramas: '',
     caloria: '',
     proteina: '',
     carbo: '',
@@ -16,34 +18,69 @@ function MacroCalculador() {
   const [alimentoToDelete, setAlimentoToDelete] = useState('');
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('macros')) || [];
-    setMacros(stored);
+    async function fetchAlimentos() {
+      try {
+        const res = await axios.get('http://localhost:3000/alimentos');
+        const dados = res.data.map(item => ({
+          id: item.id_alimento,
+          alimento: item.nome,
+          gramas: item.gramas,
+          caloria: item.calorias,
+          proteina: item.proteinas,
+          carbo: item.carboidratos,
+          gordura: item.gorduras
+        }));
+        setMacros(dados);
+      } catch (err) {
+        console.error('Erro ao buscar alimentos:', err);
+      }
+    }
+    fetchAlimentos();
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem('macros', JSON.stringify(macros));
-  }, [macros]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let id = macros.length ? macros[macros.length - 1].id + 1 : 1;
-    while (macros.some(macro => macro.id === id)) id++;
-
-    const novoMacro = { id, ...formData };
-    setMacros([...macros, novoMacro]);
-    setFormData({ alimento: '', caloria: '', proteina: '', carbo: '', gordura: '' });
-    setModalVisible(true);
+    const { alimento, gramas, caloria, proteina, carbo, gordura } = formData;
+    try {
+      const res = await axios.post('http://localhost:3000/alimentos', {
+        nome: alimento,
+        gramas: parseFloat(gramas),
+        calorias: parseFloat(caloria),
+        proteinas: parseFloat(proteina),
+        carboidratos: parseFloat(carbo),
+        gorduras: parseFloat(gordura)
+      });
+      const novoMacro = {
+        id: res.data.id_alimento,
+        alimento: res.data.nome,
+        gramas: res.data.gramas,
+        caloria: res.data.calorias,
+        proteina: res.data.proteinas,
+        carbo: res.data.carboidratos,
+        gordura: res.data.gorduras
+      };
+      setMacros([...macros, novoMacro]);
+      setFormData({ alimento: '', gramas: '', caloria: '', proteina: '', carbo: '', gordura: '' });
+      setModalVisible(true);
+    } catch (err) {
+      console.error('Erro ao cadastrar alimento:', err);
+    }
   };
 
-  const confirmarExclusao = () => {
-    setMacros(macros.filter(m => m.id !== itemToDelete));
-    setDeleteModalVisible(false);
-    setItemToDelete(null);
-    setAlimentoToDelete('');
+  const confirmarExclusao = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/alimentos/${itemToDelete}`);
+      setMacros(macros.filter(m => m.id !== itemToDelete));
+      setDeleteModalVisible(false);
+      setItemToDelete(null);
+      setAlimentoToDelete('');
+    } catch (err) {
+      console.error('Erro ao excluir alimento:', err);
+    }
   };
 
   return (
@@ -52,7 +89,7 @@ function MacroCalculador() {
       <h2>Use a ferramenta para manter controle sobre seus macronutrientes e alcançar seu objetivo!</h2>
 
       <form onSubmit={handleSubmit}>
-        {['alimento', 'caloria', 'proteina', 'carbo', 'gordura'].map((field) => (
+        {['alimento', 'gramas', 'caloria', 'proteina', 'carbo', 'gordura'].map((field) => (
           <div key={field}>
             <label htmlFor={field}>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
             <input
@@ -72,6 +109,7 @@ function MacroCalculador() {
         <thead>
           <tr>
             <th>Alimento</th>
+            <th>Gramas</th>
             <th>Calorias</th>
             <th>Proteinas</th>
             <th>Carboidratos</th>
@@ -83,6 +121,7 @@ function MacroCalculador() {
           {macros.map((macro) => (
             <tr key={macro.id}>
               <td>{macro.alimento}</td>
+              <td>{macro.gramas}</td>
               <td>{macro.caloria}</td>
               <td>{macro.proteina}</td>
               <td>{macro.carbo}</td>

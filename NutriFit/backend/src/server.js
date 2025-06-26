@@ -136,7 +136,7 @@ app.get('/alimentos', async (req, res) => {
 
 // POST para cadastrar novo alimento
 app.post('/alimentos', async (req, res) => {
-  const { nome, gramas, calorias } = req.body;
+  const { nome, gramas, calorias, proteinas, carboidratos, gorduras } = req.body;
 
   if (!nome || gramas == null || calorias == null) {
     return res.status(400).json({ error: 'Campos faltando (nome, gramas, calorias)' });
@@ -144,14 +144,17 @@ app.post('/alimentos', async (req, res) => {
 
   try {
     const [resultado] = await pool.query(
-      'INSERT INTO alimentos (nome, gramas, calorias) VALUES (?, ?, ?)',
-      [nome, gramas, calorias]
+      'INSERT INTO alimentos (nome, gramas, calorias, proteinas, carboidratos, gorduras) VALUES (?, ?, ?, ?, ?, ?)',
+      [nome, gramas, calorias, proteinas, carboidratos, gorduras]
     );
     const novoAlimento = {
       id_alimento: resultado.insertId,
       nome,
       gramas,
-      calorias
+      calorias,
+      proteinas,
+      carboidratos,
+      gorduras
     };
     res.status(201).json(novoAlimento);
   } catch (err) {
