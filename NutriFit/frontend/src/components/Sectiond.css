@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* src/components/Section.css */
+.sectiond-container {
+  width: 100%; /* Largura total */
+  display: flex; /* Layout flexível */
+  align-items: center; /* Alinha verticalmente no centro */
+  padding: 0px; /* Espaçamento interno */
+  box-sizing: border-box; /*Inclui padding na largura */
+  background-color: rgb(6, 107, 14); /* Fundo opcional para contraste */
+  margin-bottom: 0px; /*Espaçamento entre seções */
+}
+
+.sectiond-image {
+  flex: 2 ; /* Ocupa uma parte proporcional (ajustável) */
+  max-width: 50%; /* Limita a largura da imagem para não dominar */
+  margin-right: 0px; /* Espaçamento à direita da imagem */
+  margin-left: 0px;
+}
+
+.sectiond-image img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto; /* Preserva a proporção */
+  object-fit: flex; /* Ajusta a imagem sem distorcer */
+   /* border-radius: 8px; Opcional: arredonda as bordas */
+}
+
+.sectiond-content {
+  flex: 2; /* Ocupa mais espaço que a imagem (ajustável) */
+  /* padding: 10px; Espaçamento interno */
+}
+
+.sectiond-content h2 {
+  font-size: 2.0rem;
+  margin-bottom: 70px;
+  margin-left: 30px;
+  margin-right: 30px;
+  color: #fcfffc;
+  font-family: 'Poppins', sans-serif; /* Fonte moderna */
+}
+
+.sectiond-content p {
+  font-size: 1.4rem;
+  color: #fdfdfd;
+  margin-bottom: 60px;
+  margin-left: 100px;
+  margin-right: 100px;
+  font-family: 'Poppins', sans-serif; /* Fonte moderna */
+}
+
+.sectiond-button {
+  padding: 20px 50px;
+  background-color: #6cc24a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.3rem;
+  /* Fonte moderna */
+  font-family: 'Poppins', sans-serif; 
+}
+
+.sectiond-button:hover {
+  background-color: #5aa73e;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .sectiond-container {
+    flex-direction: column; /* Empilha em colunas em telas menores */
+    align-items: stretch; /* Estica os itens verticalmente */
+  }
+
+  .sectiond-image {
+    max-width: 100%; /* Imagem ocupa largura total em mobile */
+    margin-right: 0;
+    margin-bottom: 20px; /* Espaçamento abaixo da imagem */
+  }
+
+  .sectiond-content {
+    padding: 0;
+  }
+}

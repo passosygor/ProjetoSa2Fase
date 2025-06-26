@@ -1,27 +1,30 @@
+// src/components/Section.jsx
 import React from 'react';
-import './Section.css';
+import './Sectiond.css';
+import { useNavigate } from 'react-router-dom';
 
-const Section = ({ title, description, buttonText, imageSrc, onNavigate }) => {
+const Sectiond = ({ title, description, buttonText, imageSrc, url }) => {
   const handleClick = () => {
-    if (onNavigate) {
-      onNavigate();
-    }
+    navigate(url)
   };
 
+
+  const navigate = useNavigate();
+
   return (
-    <div className="section-container">
-      <div className="section-text">
+    <div className="sectiond-container">
+      <div className="sectiond-content">
         <h2>{title}</h2>
         <p>{description}</p>
-        <button onClick={handleClick} className="section-button">
+        <button onClick={handleClick} className="sectiond-button">
           {buttonText}
         </button>
       </div>
-      <div className="section-image">
+      <div className="sectiond-image">
         <img src={imageSrc} alt={title} />
       </div>
     </div>
   );
 };
 
-export default Section;
+export default Sectiond;

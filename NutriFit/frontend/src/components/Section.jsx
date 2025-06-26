@@ -1,13 +1,16 @@
-// src/components/Section.jsx
+
 import React from 'react';
 import './Section.css';
+import { useNavigate } from 'react-router-dom';
 
-const Section = ({ title, description, buttonText, imageSrc, onNavigate }) => {
+const Section = ({ title, description, buttonText, imageSrc, url }) => {
   const handleClick = () => {
-    if (onNavigate) {
-      onNavigate();
-    }
+    navigate(url)
+   
   };
+
+  
+  const navigate = useNavigate();
 
   return (
     <div className="section-container">

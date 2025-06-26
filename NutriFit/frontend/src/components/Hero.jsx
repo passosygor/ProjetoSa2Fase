@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section
       className="hero"
-      style={{ backgroundImage: `url('/img/fundocomlogo.png')` }} // Caminho absoluto
+      style={{ backgroundImage: `url('/img/fundoog.png')` }} // Caminho absoluto
     ></section>
   );
 };

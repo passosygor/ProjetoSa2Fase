@@ -5,6 +5,7 @@
   background-size: cover; /* Imagem cobre toda a área sem distorção */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Evita repetição */
+  border-bottom: 10;
 }
 
 /* Responsividade */

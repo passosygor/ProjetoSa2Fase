@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard'
 import CalcularIMC from './pages/CalcularIMC'
 import Hero from './components/Hero'
 import { Routes, Route } from 'react-router-dom'
+import Section from './components/Section'
 
 function App() {  
   return (

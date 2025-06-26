@@ -5,12 +5,13 @@ import './Home.css';
 import Header from '../components/Header.jsx';
 import Hero from '../components/Hero.jsx';
 import Section from '../components/Section.jsx';
+import Sectiond from '../components/Sectiond.jsx';
 
 
-const navigateDieta = () => navigate('/quiz');
 
 function Home() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  // const navigateDieta = () => navigate('/quiz');
   
   return (
     <>
@@ -22,8 +23,22 @@ function Home() {
       description="Faça o quiz e montamos um plano de dieta para suas necessidades."
       buttonText="Saiba Mais"
       imageSrc={"/img/sectiondieta.jpg"}
-      onNavigate={navigateDieta}
+      url='/quiz'
       />
+      <Sectiond
+      title="Cadastro de Alimentos"
+      description="Personalize os alimentos e suas quantidades."
+      buttonText="Saiba Mais"
+      imageSrc={"/img/cadastroalimento.jpg"}
+      url='/calculador'
+      />
+      <Section
+      title="Consumo Diário"
+      description="Acompanhe seu consumo diário e potencialize seus resultados!."
+      buttonText="Comece agora"
+      imageSrc={"/img/corposarado.jpg"}
+      url='/quiz'
+      />  
     </>
   );
 }
