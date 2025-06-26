@@ -1,35 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import Contador from '../components/Contador';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './Calculador.css';
-import Logo from '../components/Logo.jsx';
+import './Calculador.css'; // renomeie o CSS também, se quiser
 
 function Calculador() {
-  const [inputNome, setInputNome] = useState('');
-  const [inputCaloria, setInputCaloria] = useState('');
-  const [inputGramas, setInputGramas] = useState('');
-  const [inputProteinas, setInputProteinas] = useState('');
-  const [inputCarboidratos, setInputCarboidratos] = useState('');
-  const [inputGorduras, setInputGorduras] = useState('');
-  const [produtos, setProdutos] = useState([]);
+  const [macros, setMacros] = useState([]);
+  const [formData, setFormData] = useState({
+    alimento: '',
+    gramas: '',
+    caloria: '',
+    proteina: '',
+    carbo: '',
+    gordura: ''
+  });
   const [modalVisible, setModalVisible] = useState(false);
-
-  const API = 'http://localhost:3000';
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+  const [alimentoToDelete, setAlimentoToDelete] = useState('');
 
   useEffect(() => {
     async function fetchAlimentos() {
       try {
-        const res = await axios.get(`${API}/alimentos`);
-        const listaFormatada = res.data.map(item => ({
+        const res = await axios.get('http://localhost:3000/alimentos');
+        const dados = res.data.map(item => ({
           id: item.id_alimento,
-          nome: item.nome,
+          alimento: item.nome,
           gramas: item.gramas,
           caloria: item.calorias,
-          proteinas: item.proteinas,
-          carboidratos: item.carboidratos,
-          gorduras: item.gorduras
+          proteina: item.proteinas,
+          carbo: item.carboidratos,
+          gordura: item.gorduras
         }));
-        setProdutos(listaFormatada);
+        setMacros(dados);
       } catch (err) {
         console.error('Erro ao buscar alimentos:', err);
       }
@@ -37,95 +38,132 @@ function Calculador() {
     fetchAlimentos();
   }, []);
 
-  async function cadastrar() {
-    if (
-      !inputNome || !inputGramas || !inputCaloria ||
-      !inputProteinas || !inputCarboidratos || !inputGorduras
-    ) {
-      alert('Preencha todos os campos antes de cadastrar!');
-      return;
-    }
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const novo = {
-      nome: inputNome,
-      gramas: Number(inputGramas),
-      calorias: Number(inputCaloria),
-      proteinas: Number(inputProteinas),
-      carboidratos: Number(inputCarboidratos),
-      gorduras: Number(inputGorduras)
-    };
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { alimento, gramas, caloria, proteina, carbo, gordura } = formData;
     try {
-      const res = await axios.post(`${API}/alimentos`, novo);
-      const criado = res.data;
-      const alimentoFormatado = {
-        id: criado.id_alimento,
-        nome: criado.nome,
-        gramas: criado.gramas,
-        caloria: criado.calorias,
-        proteinas: criado.proteinas,
-        carboidratos: criado.carboidratos,
-        gorduras: criado.gorduras
+      const res = await axios.post('http://localhost:3000/alimentos', {
+        nome: alimento,
+        gramas: parseFloat(gramas),
+        calorias: parseFloat(caloria),
+        proteinas: parseFloat(proteina),
+        carboidratos: parseFloat(carbo),
+        gorduras: parseFloat(gordura)
+      });
+      const novoMacro = {
+        id: res.data.id_alimento,
+        alimento: res.data.nome,
+        gramas: res.data.gramas,
+        caloria: res.data.calorias,
+        proteina: res.data.proteinas,
+        carbo: res.data.carboidratos,
+        gordura: res.data.gorduras
       };
-      setProdutos([alimentoFormatado, ...produtos]);
-
-      // Limpa campos
-      setInputNome('');
-      setInputGramas('');
-      setInputCaloria('');
-      setInputProteinas('');
-      setInputCarboidratos('');
-      setInputGorduras('');
-
-      // Exibe modal de sucesso
+      setMacros([...macros, novoMacro]);
+      setFormData({ alimento: '', gramas: '', caloria: '', proteina: '', carbo: '', gordura: '' });
       setModalVisible(true);
     } catch (err) {
       console.error('Erro ao cadastrar alimento:', err);
-      alert('Não foi possível cadastrar. Tenta de novo.');
     }
-  }
+  };
+
+  const confirmarExclusao = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/alimentos/${itemToDelete}`);
+      setMacros(macros.filter(m => m.id !== itemToDelete));
+      setDeleteModalVisible(false);
+      setItemToDelete(null);
+      setAlimentoToDelete('');
+    } catch (err) {
+      console.error('Erro ao excluir alimento:', err);
+    }
+  };
 
   return (
-    <>
-      <div className="container-app-calculador">
-        <a href="/"><Logo /></a>
-        <h1>Cadastro de Alimentos</h1>
+    <div className="macro-container">
+      <h1>Tabela de Alimentos</h1>
+      <h2>Use a ferramenta para adicionar alimentos e suas informações caloricas!</h2>
 
-        <div className="form-produto">
-          <label>Nome</label>
-          <input type="text" value={inputNome} onChange={(e) => setInputNome(e.target.value)} />
-
-          <label>Quantidade (g)</label>
-          <input type="number" value={inputGramas} onChange={(e) => setInputGramas(e.target.value)} />
-
-          <label>Caloria</label>
-          <input type="number" value={inputCaloria} onChange={(e) => setInputCaloria(e.target.value)} />
-
-          <label>Proteínas (g)</label>
-          <input type="number" value={inputProteinas} onChange={(e) => setInputProteinas(e.target.value)} />
-
-          <label>Carboidratos (g)</label>
-          <input type="number" value={inputCarboidratos} onChange={(e) => setInputCarboidratos(e.target.value)} />
-
-          <label>Gorduras (g)</label>
-          <input type="number" value={inputGorduras} onChange={(e) => setInputGorduras(e.target.value)} />
-
-          <div className="botao">
-            <button onClick={cadastrar}>Cadastrar</button>
+      <form onSubmit={handleSubmit}>
+        {['alimento', 'gramas', 'caloria', 'proteina', 'carbo', 'gordura'].map((field) => (
+          <div key={field}>
+            <label htmlFor={field}>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+            <input
+              type={field === 'alimento' ? 'text' : 'number'}
+              id={field}
+              name={field}
+              value={formData[field]}
+              onChange={handleChange}
+              required
+            />
           </div>
-        </div>
-      </div>
+        ))}
+        <button type="submit">Adicionar</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Alimento</th>
+            <th>Gramas</th>
+            <th>Calorias</th>
+            <th>Proteinas</th>
+            <th>Carboidratos</th>
+            <th>Gordura</th>
+            <th>Exclusão</th>
+          </tr>
+        </thead>
+        <tbody>
+          {macros.map((macro) => (
+            <tr key={macro.id}>
+              <td>{macro.alimento}</td>
+              <td>{macro.gramas}</td>
+              <td>{macro.caloria}</td>
+              <td>{macro.proteina}</td>
+              <td>{macro.carbo}</td>
+              <td>{macro.gordura}</td>
+              <td>
+                <button
+                  onClick={() => {
+                    setItemToDelete(macro.id);
+                    setAlimentoToDelete(macro.alimento);
+                    setDeleteModalVisible(true);
+                  }}
+                >
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       {/* Modal de sucesso */}
       {modalVisible && (
         <div className="modal" onClick={() => setModalVisible(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close" onClick={() => setModalVisible(false)}>&times;</span>
-            <p>✅ Alimento cadastrado com sucesso</p>
+            <p>Alimento cadastrado com sucesso</p>
           </div>
         </div>
       )}
-    </>
+
+      {/* Modal de exclusão */}
+      {deleteModalVisible && (
+        <div className="modal" onClick={() => setDeleteModalVisible(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close" onClick={() => setDeleteModalVisible(false)}>&times;</span>
+            <p>Deseja realmente excluir o alimento <strong>{alimentoToDelete}</strong>?</p>
+            <button id="confirmarExcluir" onClick={confirmarExclusao}>Excluir</button>
+            <button id="cancelarExcluir" onClick={() => setDeleteModalVisible(false)}>Cancelar</button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
