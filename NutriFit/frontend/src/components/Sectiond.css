@@ -7,7 +7,7 @@
   align-items: center; /* Alinha verticalmente no centro */
   padding: 0px; /* Espaçamento interno */
   box-sizing: border-box; /*Inclui padding na largura */
-  background-color: rgb(6, 107, 14); /* Fundo opcional para contraste */
+  background-color: rgba(13, 100, 21, 0.966); /* Fundo opcional para contraste */
   margin-bottom: 0px; /*Espaçamento entre seções */
 }
 
@@ -31,7 +31,7 @@
 }
 
 .sectiond-content h2 {
-  font-size: 2.0rem;
+  font-size: 3.0rem;
   margin-bottom: 70px;
   margin-left: 30px;
   margin-right: 30px;

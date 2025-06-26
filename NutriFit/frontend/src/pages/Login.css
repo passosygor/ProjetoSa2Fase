@@ -55,7 +55,7 @@
 }
 
 .modal-erro .modal-conteudo {
-  background-color: #fff;
+  background-color: #F1F1F1;
   border: 2px solid #ff4d4d;
   padding: 20px 30px;
   border-radius: 12px;
@@ -66,9 +66,13 @@
 
 
 .div-direita{
-   height: 100vh;
-    width: 50vw;
-    background-image: url("/img/images.jpg");
+  position: relative;
+  height: 100vh; /* Altura total da janela, como na Cascade */
+  width: 50vw;
+  background-image: url("/img/cadastro.jpg");
+  background-size: cover;
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita repetição */
 }
 
 .div-esquerda{
@@ -76,7 +80,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #F1F1F1;
 
 }
 

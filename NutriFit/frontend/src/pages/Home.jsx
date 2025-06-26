@@ -22,21 +22,21 @@ function Home() {
       title="Plano de Dieta Personalizado"
       description="Faça o quiz e montamos um plano de dieta para suas necessidades."
       buttonText="Saiba Mais"
-      imageSrc={"/img/sectiondieta.jpg"}
+      imageSrc={"/img/dietasection.jpg"}
       url='/quiz'
       />
       <Sectiond
       title="Cadastro de Alimentos"
       description="Personalize os alimentos e suas quantidades."
       buttonText="Saiba Mais"
-      imageSrc={"/img/cadastroalimento.jpg"}
+      imageSrc={"/img/alimentoaqui.jpg"}
       url='/calculador'
       />
       <Section
       title="Consumo Diário"
       description="Acompanhe seu consumo diário e potencialize seus resultados!."
       buttonText="Comece agora"
-      imageSrc={"/img/corposarado.jpg"}
+      imageSrc={"/img/acad.jpg"}
       url='/quiz'
       />  
     </>
