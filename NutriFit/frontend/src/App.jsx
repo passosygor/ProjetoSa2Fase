@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Quiz from './pages/Quiz'
 import Plano from './pages/Plano'
 import Dashboard from './pages/Dashboard'
+import MacroCalculador from './pages/MacroCalculador'
 import CalcularIMC from './pages/CalcularIMC'
 import Hero from './components/Hero'
 import { Routes, Route } from 'react-router-dom'
@@ -19,6 +20,7 @@ function App() {
     <div className='container-app'>
       {/* <Header /> */}
       {/* <Calculador/> */}
+    
       <Routes>
         <Route path="/" element={<Cadastro />} />
         {/* <Route path="/" element={<Home/>} />  */}
@@ -29,6 +31,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} /> 
         <Route path="/quiz" element={<Quiz />} /> 
         <Route path='/planoalimentar' element={<Plano/>}/>
+        <Route path="/Macro" element={<MacroCalculador />} /> 
         {/* Dashboard em testes, qualquer erro apagar todos vinculados */}
       </Routes>
     </div>
