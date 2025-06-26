@@ -3,7 +3,7 @@
 .container-header {
   position: relative;
   z-index: 10; /* Garante que fique acima do fundo */
-  background-color: rgba(255, 255, 255, 0.8); /* opcional: clareia e destaca */
+  background-color: #FEFEFC; /* opcional: clareia e destaca */
   backdrop-filter: blur(4px); /* opcional: aplica blur ao fundo */
   padding: 15px 30px;
   display: flex;

@@ -6,6 +6,7 @@ import Header from '../components/Header.jsx';
 import Hero from '../components/Hero.jsx';
 import Section from '../components/Section.jsx';
 import Sectiond from '../components/Sectiond.jsx';
+import Footer from '../components/Footer.jsx';
 
 
 
@@ -39,6 +40,7 @@ function Home() {
       imageSrc={"/img/acad.jpg"}
       url='/quiz'
       />  
+      <Footer />
     </>
   );
 }
