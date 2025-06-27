@@ -20,8 +20,8 @@ function Header() {
         <button className="menu-button" onClick={() => navigate('/quiz')}>
           Plano de Dieta
         </button>
-        <button className="menu-button" onClick={() => navigate('/calculador')}>
-          Cadastrar Alimentos
+        <button className="menu-button" onClick={() => navigate('/Macro')}>
+          Calculadora
         </button>
 
         {!usuario && (
