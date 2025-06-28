@@ -26,12 +26,12 @@ function Quiz() {
 
   const calcularIMC = () => {
     const alturaM = formData.altura / 100;
-    return (formData.peso / (alturaM * alturaM)).toFixed(2);
+    return (formData.peso / (alturaM * alturaM));
   };
 
   const gerarPlano = async () => {
     const alturaM = formData.altura / 100;
-    const imc = (formData.peso / (alturaM * alturaM)).toFixed(2);
+    const imc = (formData.peso / (alturaM * alturaM));
     let calorias = 2000;
 
     if (formData.objetivo === 'perda de peso') calorias = 1800;
@@ -45,6 +45,8 @@ function Quiz() {
       imc,
       calorias
     };
+    console.log(plano);
+    
 
     try {
       await axios.post('http://localhost:3000/planos', plano);

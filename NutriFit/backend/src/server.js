@@ -172,7 +172,7 @@ app.post('/planos', async (req, res) => {
     try {
         // Cálculos automáticos
         const alturaM = altura / 100;
-        const imc = (peso / (alturaM * alturaM)).toFixed(2);
+        const imc = (peso / (alturaM * alturaM));
         
         // Cálculo de calorias baseado em Harris-Benedict
         let tmb;
@@ -275,58 +275,72 @@ async function gerarCardapioAutomatico(objetivo, alergias, caloriasDiarias) {
     try {
         // Filtros para alergias
         let filtroAlergias = '';
-        if (alergias === 'Glúten') filtroAlergias = 'AND contem_gluten = FALSE';
-        else if (alergias === 'Lactose') filtroAlergias = 'AND contem_lactose = FALSE';
+        if (alergias === 'Glúten') {
+            filtroAlergias = 'AND contem_gluten = 0';
+        } else if (alergias === 'Lactose') {
+            filtroAlergias = 'AND contem_lactose = 0';
+        } else if (alergias === 'Ambos') {
+            filtroAlergias = 'AND contem_gluten = 0 AND contem_lactose = 0';
+        }
 
         // Consulta alimentos permitidos
         const [alimentos] = await pool.query(
             `SELECT * FROM alimentos WHERE 1=1 ${filtroAlergias}`
         );
 
+        if (alimentos.length === 0) {
+            console.error('Nenhum alimento disponível com os filtros aplicados');
+            return null;
+        }
+
         // Agrupa por categoria
         const categorias = {
-            carboidratos: alimentos.filter(a => a.categoria === 'carboidrato'),
-            proteinas: alimentos.filter(a => a.categoria === 'proteina'),
-            frutas: alimentos.filter(a => a.categoria === 'fruta'),
-            vegetais: alimentos.filter(a => a.categoria === 'vegetal'),
-            gorduras: alimentos.filter(a => a.categoria === 'gordura')
+            carboidratos: alimentos.filter(a => a.categoria === 'carboidrato' || a.categoria === 'carboidrato'),
+            proteinas: alimentos.filter(a => a.categoria === 'proteina' || a.categoria === 'proteina'),
+            frutas: alimentos.filter(a => a.categoria === 'fruta' || a.categoria === 'fruta'),
+            vegetais: alimentos.filter(a => a.categoria === 'vegetal' || a.categoria === 'legume' || a.categoria === 'leguminosa'),
+            gorduras: alimentos.filter(a => a.categoria === 'gordura' || a.categoria === 'oleaginosa')
         };
 
         // Gera cardápio baseado no objetivo
-        if (objetivo === 'Ganho de massa magra') {
-            return {
-                cafeDaManha: [
-                    selecionarAlimento(categorias.carboidratos, 60),
-                    selecionarAlimento(categorias.proteinas, 30),
-                    selecionarAlimento(categorias.frutas, 1)
-                ],
-                almoco: [
-                    selecionarAlimento(categorias.proteinas, 150),
-                    selecionarAlimento(categorias.carboidratos, 100),
-                    selecionarAlimento(categorias.vegetais, 100)
-                ],
-                jantar: [
-                    selecionarAlimento(categorias.proteinas, 120),
-                    selecionarAlimento(categorias.carboidratos, 80),
-                    selecionarAlimento(categorias.vegetais, 100)
-                ]
-            };
-        } else { // Perda de peso
-            return {
-                cafeDaManha: [
-                    selecionarAlimento(categorias.proteinas, 40),
-                    selecionarAlimento(categorias.frutas, 1)
-                ],
-                almoco: [
-                    selecionarAlimento(categorias.proteinas, 120),
-                    selecionarAlimento(categorias.vegetais, 200)
-                ],
-                jantar: [
-                    selecionarAlimento(categorias.proteinas, 100),
-                    selecionarAlimento(categorias.vegetais, 150)
-                ]
-            };
+        const cardapio = {
+            cafeDaManha: [],
+            almoco: [],
+            jantar: []
+        };
+
+        // Adiciona alimentos ao café da manhã
+        if (categorias.carboidratos.length > 0) {
+            cardapio.cafeDaManha.push(selecionarAlimento(categorias.carboidratos, objetivo === 'Ganho de massa magra' ? 60 : 40));
         }
+        if (categorias.proteinas.length > 0) {
+            cardapio.cafeDaManha.push(selecionarAlimento(categorias.proteinas, objetivo === 'Ganho de massa magra' ? 30 : 20));
+        }
+        if (categorias.frutas.length > 0) {
+            cardapio.cafeDaManha.push(selecionarAlimento(categorias.frutas, 1));
+        }
+
+        // Adiciona alimentos ao almoço
+        if (categorias.proteinas.length > 0) {
+            cardapio.almoco.push(selecionarAlimento(categorias.proteinas, objetivo === 'Ganho de massa magra' ? 150 : 120));
+        }
+        if (categorias.carboidratos.length > 0) {
+            cardapio.almoco.push(selecionarAlimento(categorias.carboidratos, objetivo === 'Ganho de massa magra' ? 100 : 80));
+        }
+        if (categorias.vegetais.length > 0) {
+            cardapio.almoco.push(selecionarAlimento(categorias.vegetais, objetivo === 'Ganho de massa magra' ? 100 : 150));
+        }
+
+        // Adiciona alimentos ao jantar
+        if (categorias.proteinas.length > 0) {
+            cardapio.jantar.push(selecionarAlimento(categorias.proteinas, objetivo === 'Ganho de massa magra' ? 120 : 100));
+        }
+        if (categorias.vegetais.length > 0) {
+            cardapio.jantar.push(selecionarAlimento(categorias.vegetais, objetivo === 'Ganho de massa magra' ? 100 : 150));
+        }
+
+        return cardapio;
+
     } catch (err) {
         console.error('Erro ao gerar cardápio:', err);
         return null;
@@ -337,8 +351,14 @@ function selecionarAlimento(lista, quantidade) {
     if (!lista || lista.length === 0) return null;
     const alimento = lista[Math.floor(Math.random() * lista.length)];
     return {
-        ...alimento,
-        quantidade
+        id: alimento.id_alimento,
+        nome: alimento.nome,
+        categoria: alimento.categoria,
+        quantidade: quantidade,
+        calorias: (alimento.calorias * quantidade / (alimento.gramas || 100)),
+        proteinas: (alimento.proteinas * quantidade / (alimento.gramas || 100)),
+        carboidratos: (alimento.carboidratos * quantidade / (alimento.gramas || 100)),
+        gorduras: (alimento.gorduras * quantidade / (alimento.gramas || 100))
     };
 }
 

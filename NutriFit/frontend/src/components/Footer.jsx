@@ -26,7 +26,7 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Contato</h3>
           <p>Telefone: (48) 99974-4446</p>
-          <p>Email: nicolasclima00@gmail.com</p>
+          <p>Email: suporteNutriFit@gmail.com</p>
         </div>
         <div className="footer-section social-links">
           <h3>Siga-nos</h3>

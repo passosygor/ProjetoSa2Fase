@@ -34,11 +34,11 @@ function Home() {
       url='/calculador'
       />
       <Section
-      title="Consumo Diário"
-      description="Acompanhe seu consumo diário e potencialize seus resultados!."
+      title="Calculadora de MacroNutrientes"
+      description="Calcule seu consumo calorico por refeição!."
       buttonText="Comece agora"
       imageSrc={"/img/acad.jpg"}
-      url='/quiz'
+      url='/Macro'
       />  
       <Footer />
     </>
