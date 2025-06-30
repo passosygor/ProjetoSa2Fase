@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
-import Header from '../components/Header.jsx';
+import Logo from '../components/Logo.jsx';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -89,11 +89,11 @@ function Dashboard() {
 
   return (
     <>
-    <Header />
       <div className="dashboard-bg">
       <div className="dashboard-card">
         {editando ? (
           <>
+
             <h2>Editar Informações</h2>
             <input
               type="text"
@@ -112,6 +112,7 @@ function Dashboard() {
           </>
         ) : (
           <>
+            {/* <a href="/" className="logo-link"><Logo /></a> */}
             <h1>Bem-vindo, {user.usuario}</h1>
             <p>Email: {user.email}</p>
 

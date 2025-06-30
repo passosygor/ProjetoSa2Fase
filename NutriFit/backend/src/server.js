@@ -7,7 +7,7 @@ const app = express();
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'Rosane19',
+    password: 'senai',
     database: 'bdd_sa',
     waitForConnections: true,
     connectionLimit: 10,
@@ -52,6 +52,20 @@ app.post('/usuarios', async (req, res) => {
     }
 });
 
+app.delete('/usuarios/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [result] = await pool.query('DELETE FROM usuarios WHERE id_usuario = ?', [id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+        res.json({ message: 'Usuário deletado com sucesso' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Erro ao deletar usuário' });
+    }
+});
+
 app.post('/login', async (req, res) => {
     const { email, senha } = req.body;
     try {
@@ -84,6 +98,20 @@ app.post('/alimentos', async (req, res) => {
         res.status(201).json({ id_alimento: result.insertId, ...req.body });
     } catch (err) {
         res.status(500).json({ error: 'Erro ao inserir alimento' });
+    }
+});
+
+app.delete('/alimentos/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [result] = await pool.query('DELETE FROM alimentos WHERE id_alimento = ?', [id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Alimento não encontrado' });
+        }
+        res.json({ message: 'Alimento deletado com sucesso' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Erro ao deletar alimento' });
     }
 });
 

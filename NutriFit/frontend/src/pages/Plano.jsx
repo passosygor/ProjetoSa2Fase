@@ -14,21 +14,19 @@ function Plano() {
   useEffect(() => {
     async function fetchPlano() {
       try {
-    const response = await axios.get(`http://localhost:3000/planos/${idUsuario}`);
+        const response = await axios.get(`http://localhost:3000/planos/${idUsuario}`);
         setPlano(response.data);
-        {console.log(response.data)}
         setLoading(false);
       } catch (err) {
         setError(err.response?.data?.erro || err.message);
         setLoading(false);
       }
     }
-
     if (idUsuario) fetchPlano();
   }, [idUsuario]);
 
   const calcularTotais = (refeicao) => {
-    if (!refeicao || !refeicao.length) return {};
+    if (!refeicao || !refeicao.length) return { calorias: 0, proteinas: 0, carboidratos: 0, gorduras: 0 };
     return refeicao.reduce((totais, item) => {
       const fator = item.quantidade / item.gramas;
       totais.calorias += item.calorias * fator;
@@ -39,16 +37,16 @@ function Plano() {
     }, { calorias: 0, proteinas: 0, carboidratos: 0, gorduras: 0 });
   };
 
-  if (loading) return <div>Carregando plano...</div>;
-  if (error) return <div>Erro: {error}</div>;
+  if (loading) return <div className="loading">Carregando plano...</div>;
+  if (error) return <div className="error">Erro: {error}</div>;
 
   return (
     <div className="plano-container">
       {plano && (
         <>
-             <a href="/"><Logo /></a>
+          <a href="/" className="logo-link"><Logo /></a>
           <h2>Seu Plano Alimentar</h2>
-          
+
           <div className="dados-usuario">
             <p><strong>Objetivo:</strong> {plano.objetivo}</p>
             <p><strong>Calorias diárias:</strong> {plano.calorias} kcal</p>
@@ -58,56 +56,38 @@ function Plano() {
 
           {plano.cardapio && (
             <div className="cardapio">
-              <div className="refeicao">
-                <h3>Café da Manhã</h3>
-                <ul>
-                  {plano.cardapio.cafeDaManha?.map((item, index) => (
-                    <li key={index}>
-                      {item.quantidade}g de {item.nome} - {Math.round(item.calorias * (item.quantidade / item.gramas))} kcal
-                    </li>
-                  ))}
-                </ul>
-                <div className="totais-refeicao">
-                  {Object.entries(calcularTotais(plano.cardapio.cafeDaManha)).map(([key, value]) => (
-                    <span key={key}>{key}: {Math.round(value)} </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="refeicao">
-                <h3>Almoço</h3>
-                {console.log(plano.cardapio.almoco)}
-                <ul>
-                  {plano.cardapio.almoco?.map((item, index) => (
-                    <li key={index}> {console.log(item)}
-                      {item.quantidade}g de {item.nome} - {Math.round(item.calorias * (item.quantidade / item.gramas))} kcal
-                    </li>
-                  ))}
-                </ul>
-                <div className="totais-refeicao">
-                  {Object.entries(calcularTotais(plano.cardapio.almoco)).map(([key, value]) => (
-                    <span key={key}>{key}: {Math.round(value)} </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="refeicao">
-                <h3>Jantar</h3>
-                <ul>
-                  {plano.cardapio.jantar?.map((item, index) => (
-                    <li key={index}>
-                      {item.quantidade}g de {item.nome} - {Math.round(item.calorias * (item.quantidade / item.gramas))} kcal
-                    </li>
-                  ))}
-                </ul>
-                <div className="totais-refeicao">
-                  {Object.entries(calcularTotais(plano.cardapio.jantar)).map(([key, value]) => (
-                    <span key={key}>{key}: {Math.round(value)} </span>
-                  ))}
-                </div>
-              </div>
+              {['cafeDaManha', 'almoco', 'jantar'].map((refeicaoNome) => {
+                const refeicaoMap = {
+                  cafeDaManha: 'Café da Manhã',
+                  almoco: 'Almoço',
+                  jantar: 'Jantar'
+                };
+                const refeicao = plano.cardapio[refeicaoNome];
+                const totais = calcularTotais(refeicao);
+                return (
+                  <div className="refeicao" key={refeicaoNome}>
+                    <h3>{refeicaoMap[refeicaoNome]}</h3>
+                    <ul>
+                      {refeicao?.map((item, idx) => (
+                        <li key={idx}>
+                          <span>{item.quantidade}g de {item.nome}</span>
+                          <span>{Math.round(item.calorias * (item.quantidade / item.gramas))} kcal</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="totais-refeicao">
+                      <span>Calorias: <strong>{Math.round(totais.calorias)}</strong> kcal</span>
+                      <span>Proteínas: <strong>{Math.round(totais.proteinas)}</strong> g</span>
+                      <span>Carboidratos: <strong>{Math.round(totais.carboidratos)}</strong> g</span>
+                      <span>Gorduras: <strong>{Math.round(totais.gorduras)}</strong> g</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
+
+          <button className="btn-voltar" onClick={() => window.location.href = '/'}>← Voltar</button>
         </>
       )}
     </div>

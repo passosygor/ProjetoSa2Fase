@@ -1,4 +1,4 @@
-/* Plano.css - Versão com efeitos especiais */
+/* Plano.css - Versão aprimorada com efeitos extras */
 
 .plano-container {
   width: 100vw;
@@ -21,7 +21,7 @@
   width: 100%;
 }
 
-/* Efeito de gradiente no título (VOLTOU) */
+/* Efeito de gradiente no título */
 .plano-container h2::after {
   content: '';
   position: absolute;
@@ -78,7 +78,6 @@
   transition: all 0.3s ease; /* Preparação para o hover */
 }
 
-/* Efeito hover nas refeições (VOLTOU) */
 .refeicao:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -123,6 +122,11 @@
   font-weight: 600;
   color: #2c3e50;
   width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.refeicao:hover .totais-refeicao {
+  background-color: #dff0ff;
 }
 
 .totais-refeicao span {
@@ -131,6 +135,40 @@
   align-items: center;
   font-size: 0.85rem;
   min-width: 60px;
+}
+
+/* Link do logo com hover */
+.logo-link {
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.logo-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Botão voltar fixo */
+.btn-voltar {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #3498db;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.5);
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+  user-select: none;
+}
+.btn-voltar:hover {
+  background-color: #2c80c9;
+  box-shadow: 0 6px 18px rgba(40, 120, 200, 0.7);
 }
 
 /* Responsividade */
@@ -192,4 +230,17 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
+}
+
+/* Loading e erro */
+.loading, .error {
+  max-width: 400px;
+  margin: 100px auto;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #555;
+  font-weight: 600;
+}
+.error {
+  color: #e74c3c;
 }
