@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Plano.css';
+import Logo from '../components/Logo.jsx';
 
 function Plano() {
   const [plano, setPlano] = useState(null);
@@ -13,7 +14,7 @@ function Plano() {
   useEffect(() => {
     async function fetchPlano() {
       try {
-        const response = await axios.get(`http://localhost:3000/planos/${idUsuario}`);
+    const response = await axios.get(`http://localhost:3000/planos/${idUsuario}`);
         setPlano(response.data);
         {console.log(response.data)}
         setLoading(false);
@@ -45,6 +46,7 @@ function Plano() {
     <div className="plano-container">
       {plano && (
         <>
+             <a href="/"><Logo /></a>
           <h2>Seu Plano Alimentar</h2>
           
           <div className="dados-usuario">

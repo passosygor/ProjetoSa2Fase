@@ -17,12 +17,7 @@ function Header() {
     <div className='container-header'>
       <a href="/"><Logo /></a>
       <div className="menu">
-        <button className="menu-button" onClick={() => navigate('/quiz')}>
-          Plano de Dieta
-        </button>
-        <button className="menu-button" onClick={() => navigate('/Macro')}>
-          Calculadora
-        </button>
+
 
         {!usuario && (
           <>
